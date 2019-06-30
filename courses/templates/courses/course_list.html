@@ -1,0 +1,24 @@
+{% extends "courses/layouts/base.html" %}
+
+{% block title %}
+    Bienvenue sur Stekos DEV
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-4 col-md-4">
+            <h3>Liste des cours disponibles</h3>
+            {% for object in object_list %}
+                <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ object.image_url|default_if_none:'#' }}" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <p class="card-text">
+                            {{ object.description }}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

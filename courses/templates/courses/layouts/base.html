@@ -1,0 +1,164 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>{% block title %} Bienvenue sur kumasteph.dev {% endblock %}</title>
+
+        <!-- links -->
+        <link rel="stylesheet" href="{% static "courses/css/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "courses/css/simple-sidebar.css" %}">
+    </head>
+
+    <body>
+        <div id="wrapper" class="d-flex">
+
+            <!-- Sidebar -->
+            <div class="bg-transparent border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading">Stekos<sup>DEV</sup> </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="{% url "courses:index" %}" class="list-group-item-action bg-transparent">Tableau de board</a><br><br>
+                        <a href="#" class="list-group-item-action bg-transparent">Feuille de route</a><br><br>
+                        <a href="#" class="list-group-item-action bg-transparent">Cours</a>
+                    </li>
+                    <li class="list-group-item ">
+                        <a href="#" class="list-group-item-action bg-transparent">A Propos</a><br><br>
+                        <a href="#" class="list-group-item-action bg-transparent">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper" class="bg-light">
+
+                <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+                    <button class="btn btn-primary" id="menu-toggle">Menu</button>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div style="margin-left: 5vh;">
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Chercher" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Chercher</button>
+                        </form>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Utilisateur
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{% url "courses:index" %}">Accueil</a>
+                                    <a class="dropdown-item" href="#">Profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Déconnexion</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="container-fluid">
+                    {% block content %}
+                        <h5 class="mt-4">Bienvenue Sur Votre Tableau</h5>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-7">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6>Expériences accumulée aucours de la semaine passée</h6>
+                                        <pre>
+
+
+
+
+
+
+
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-5">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6>Votre travail quoditien <span class="badge badge-success">0 pas de mise à jour</span></h6>
+                                        <br><p>Vous n'avez pas de travail à faire cette semaine</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 5vh">
+                        <div class="col-sm-12 col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6>Activités récentes</h6>
+                                    <p class="text-muted">Pas d'activités récentes. Commencer un cours pour le voir ici.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6>Continuer là où vous vous êtes arrêté</h6>
+                                    <p class="text-muted">Commencer un cours pour voir les lectures compléter</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6>Ma progression</h6>
+                                </div>
+                                <div class="card-header">
+                                    <ul class="nav nav-tabs card-header-tabs">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link active">Feuille de route</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">Cours</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Special title treatment</h5>
+                                    <p class="card-text text-muted">Vous n'avez pas encore commencer le voyage</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endblock %}
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static "courses/js/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "courses/js/bootstrap.bundle.min.js" %}"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+    </body>
+</html>
