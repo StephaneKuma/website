@@ -15,7 +15,7 @@ class LessonAdmin(admin.ModelAdmin):
     ]
     list_display = ['section', 'title', 'position', 'video_url']
     list_filter = ['section', 'position']
-    search_fields = ['content', 'title', 'position', 'section']
+    search_fields = ['content', 'title', 'position', 'section', 'price']
     list_editable = ['position']
 
 
@@ -55,12 +55,12 @@ class CourseAdminForm(forms.ModelForm):
 
 class CourseAdmin(admin.ModelAdmin):
     fieldsets = [
-        (_('COURSE'), {'fields': ['title', 'slug', 'image', 'description']})
+        (_('COURSE'), {'fields': ['title', 'slug', 'image', 'description', 'is_free', 'price']})
     ]
     form = CourseAdminForm
     inlines = [SectionInline]
-    list_display = ['title', 'image', 'description']
-    list_filter = ['title']
+    list_display = ['title', 'image', 'description', 'is_free', 'price']
+    list_filter = ['title', 'is_free', 'price']
     search_fields = ['title', 'description']
 
 

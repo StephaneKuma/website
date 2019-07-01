@@ -11,6 +11,8 @@ class Course(models.Model):
     image = models.ImageField(verbose_name=_('course image'), default='default.png')
     # image = RichTextUploadingField(verbose_name=_('course image'), default='default.png')
     description = models.TextField(verbose_name=_('description'))
+    is_free = models.BooleanField(verbose_name=_('course is free ?'), default=True)
+    price = models.IntegerField(verbose_name=_('price of the course'), null=True)
 
     def __str__(self):
         return self.title
