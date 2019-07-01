@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'courses',
+    'blog',
 
     'debug_toolbar',
     'ckeditor',
