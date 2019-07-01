@@ -1,10 +1,25 @@
 from django import forms
 from django.contrib import admin
-from django.utils.translation import gettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from ckeditor.widgets import CKEditorWidget
 
 from .models import Course, Section, Lesson
+
+
+class LessonAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (_('COURSE SECTION'), {'fields': ['section']}),
+        (_('LESSON DESCRIPTION'), {'fields': ['title', 'slug', 'position', 'content']}),
+        (_('LESSON VIDEO'), {'fields': ['video_url', 'thumbnail']})
+    ]
+    list_display = ['section', 'title', 'position', 'video_url']
+    list_filter = ['section', 'position']
+    search_fields = ['content', 'title', 'position', 'section']
+    list_editable = ['position']
+
+
+admin.site.register(Lesson, LessonAdmin)
 
 
 class LessonInline(admin.TabularInline):
@@ -24,6 +39,7 @@ class SectionAdmin(admin.ModelAdmin):
     ]
     inlines = [LessonInline]
     list_filter = ['course']
+    search_fields = ['course', 'position']
 
 
 admin.site.register(Section, SectionAdmin)
@@ -43,6 +59,9 @@ class CourseAdmin(admin.ModelAdmin):
     ]
     form = CourseAdminForm
     inlines = [SectionInline]
+    list_display = ['title', 'image', 'description']
+    list_filter = ['title']
+    search_fields = ['title', 'description']
 
 
 admin.site.register(Course, CourseAdmin)

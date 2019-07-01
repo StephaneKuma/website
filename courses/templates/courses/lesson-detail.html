@@ -1,0 +1,50 @@
+{% extends "courses/layouts/base.html" %}
+
+{% block content %}
+    <div class='container'>
+{#		<h1>Lesson Detail View</h1>#}
+		<div class='row'>
+            <div class="col-sm-4 col md-4">
+                {% for section in course.sections %}
+                    <div href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Section {{ section.position }}</h5>
+                            <small>Gratuit</small>
+                        </div>
+                        <div class="list-group list-group-flush">
+                            {% for lesson in section.lessons %}
+                                <a class="list-group-item list-group-item-action" href="{{ lesson.get_absolute_url }}">{{ lesson.position }}. {{ lesson.title }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+			<div class='col-sm-8 col-md-8'>
+				{% if lesson is not None %}
+                    <h3>{{ lesson.title }}</h3>
+                    <p>{{ lesson.description }}</p>
+
+                    <video controls
+                           controlsList="nodownload"
+                           poster="{{ lesson.thumbnail.url }}"
+                           src="/static{{ lesson.video_url }}"
+                           width="300"
+                           height="200">
+                        Sorry, your browser doesn't support embedded videos.
+                    </video>
+
+                    <article>
+                        {{ lesson.content|safe }}
+                    </article>
+				{% else %}
+				<h3>Upgrade membership</h3>
+				<p>To view this course you'll need to upgrade your membership</p>
+				<br>
+{#				<a href="{% url 'memberships:select' %}"><button class="btn btn-warning">Check out memberships</button></a>#}
+				<hr>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

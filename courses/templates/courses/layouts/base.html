@@ -26,7 +26,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <a href="{% url "courses:index" %}" class="list-group-item-action bg-transparent">Tableau de board</a><br><br>
-                        <a href="#" class="list-group-item-action bg-transparent">Feuille de route</a><br><br>
+                        <a href="{% url "courses:index" %}" class="list-group-item-action bg-transparent">Feuille de route</a><br><br>
                         <a href="#" class="list-group-item-action bg-transparent">Cours</a>
                     </li>
                     <li class="list-group-item ">
@@ -71,7 +71,7 @@
                     </div>
                 </nav>
 
-                <div class="container-fluid">
+                <div class="container-fluid" style="margin-top: 3vh">
                     {% block content %}
                         <h5 class="mt-4">Bienvenue Sur Votre Tableau</h5>
                         <div class="row">
