@@ -10,7 +10,9 @@ admin.site.index_title = "Stekos DEV Administration"
 urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('courses/', include('courses.urls')),
+    path('blog/', include('blog.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('tinymce/', include('tinymce.urls')),
     path('admin/', admin.site.urls),
 ]
 
@@ -22,3 +24,4 @@ if settings.DEBUG:
     ]
 
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

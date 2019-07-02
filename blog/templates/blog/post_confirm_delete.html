@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'blog/layouts/base.html' %}
 
 {% block content %}
 
@@ -14,7 +14,7 @@
             </form>
           </div>
         </main>
-        {% include 'sidebar.html' with most_recent=most_recent category_count=category_count %}        
+        {% include 'blog/layouts/sidebar.html' with most_recent=most_recent category_count=category_count %}
       </div>
     </div>
 {% endblock content %}

@@ -7,8 +7,8 @@
 {% block content %}
     <div class="row">
         <h3 class="container-fluid">Feuille de route - Gagnez de l'expérience de manière structurée</h3>
-        <div class="col-sm-4 col-md-4">
-            {% for object in object_list %}
+        {% for object in object_list %}
+            <div class="col-sm-4 col-md-4">
                 <a href="{{ object.get_absolute_url }}">{{ object }}</a>
                 <div class="card" style="width: 18rem;">
                     <img src="{{ object.image_url|default_if_none:'#' }}" class="card-img-top" alt="">
@@ -18,7 +18,7 @@
                         </p>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

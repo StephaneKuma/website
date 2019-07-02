@@ -15,6 +15,7 @@
         <!-- links -->
         <link rel="stylesheet" href="{% static "courses/css/bootstrap.min.css" %}">
         <link rel="stylesheet" href="{% static "courses/css/simple-sidebar.css" %}">
+        <link rel="stylesheet" href="{% static "courses/css/fontawesome.min.css" %}">
     </head>
 
     <body>
@@ -25,13 +26,17 @@
                 <div class="sidebar-heading">Stekos<sup>DEV</sup> </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <a href="{% url "courses:index" %}" class="list-group-item-action bg-transparent">Tableau de board</a><br><br>
-                        <a href="{% url "courses:index" %}" class="list-group-item-action bg-transparent">Feuille de route</a><br><br>
-                        <a href="#" class="list-group-item-action bg-transparent">Cours</a>
+                        <a href="{% url "courses:index" %}" class="list-group-item-action bg-transparent"><i class="fa fa-home"></i> Tableau de board</a><br><br>
+                        <a href="{% url "courses:index" %}" class="list-group-item-action bg-transparent"><i class="fa fa-book"></i> Feuille de route</a><br><br>
+                        <a href="#" class="list-group-item-action bg-transparent"><i class="fa fa-book-open"></i> Cours</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{% url 'blog:home' %}" class="list-group-item-action bg-transparent"><i class="fa fa-blog"></i> Blog</a><br><br>
+                        <a href="#" class="list-group-item-action bg-transparent"><i class="fa fa-forumbee"></i> Forum</a><br><br>
                     </li>
                     <li class="list-group-item ">
-                        <a href="#" class="list-group-item-action bg-transparent">A Propos</a><br><br>
-                        <a href="#" class="list-group-item-action bg-transparent">Contact</a>
+                        <a href="#" class="list-group-item-action bg-transparent"><i class="fa fa-info"></i> A Propos</a><br><br>
+                        <a href="#" class="list-group-item-action bg-transparent"><i class="fab fa-accusoft"></i> Contact</a>
                     </li>
                 </ul>
             </div>
@@ -41,7 +46,7 @@
             <div id="page-content-wrapper" class="bg-light">
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-                    <button class="btn btn-primary" id="menu-toggle">Menu</button>
+                    <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bread-slice"></i> Menu</button>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -151,6 +156,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="{% static "courses/js/jquery-3.2.1.min.js" %}"></script>
     <script src="{% static "courses/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "courses/js/fontawesome.min.js" %}"></script>
 
     <!-- Menu Toggle Script -->
     <script>

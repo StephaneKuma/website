@@ -16,7 +16,7 @@ class LessonAdmin(admin.ModelAdmin):
     list_display = ['section', 'title', 'position', 'video_url']
     list_filter = ['section', 'position']
     search_fields = ['content', 'title', 'position', 'section', 'price']
-    list_editable = ['position']
+    list_editable = ['position', 'video_url']
 
 
 admin.site.register(Lesson, LessonAdmin)

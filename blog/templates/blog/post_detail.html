@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'blog/layouts/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -24,8 +24,8 @@
                     {% endfor %}
                   </div>
                   <div>
-                    <a href="{% url 'post-update' pk=post.pk %}">Update</a>
-                    <a href="{% url 'post-delete' pk=post.pk %}">Delete</a>
+                    <a href="{% url 'blog:post-update' post.pk %}">Update</a>
+                    <a href="{% url 'blog:post-delete' post.pk %}">Delete</a>
                   </div>
                 </div>
                 <h1>{{ post.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
@@ -71,7 +71,7 @@
                           {% if comment.user.author %}
                           <img src="{{ comment.user.author.profile_picture.url }}" alt="..." class="img-fluid rounded-circle">
                           {% else %}
-                          <img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid rounded-circle">
+                          <img src="{% static 'blog/img/user.svg' %}" alt="..." class="img-fluid rounded-circle">
                           {% endif %}
                         </div>
                         <div class="title"><strong>{{ comment.user.username }}</strong><span class="date">{{ comment.timestamp|timesince }} ago</span></div>
@@ -107,7 +107,7 @@
             </div>
           </div>
         </main>
-        {% include 'sidebar.html' with most_recent=most_recent category_count=category_count %}        
+        {% include 'blog/layouts/sidebar.html' with most_recent=most_recent category_count=category_count %}
       </div>
     </div>
 {% endblock content %}
