@@ -1,0 +1,38 @@
+{% extends "courses/layouts/base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-4 col-md-4">
+{#            <h1>Détail du cours</h1>#}
+            <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+            <div class="card" style="width: 18rem;">
+                <img src="{{ object.image_url|default_if_none:'#' }}" class="card-img-top" alt="">
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ object.description|safe }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8 col-md-8">
+            <div class="list-group">
+                {% for course in object.courses %}
+                    <div>
+                        <div class="d-flex w-100 justify-content-between alert alert-primary">
+                            <h5 class="mb-1" data-toggle="collapse" href="#collapse{{ course.pk }}" aria-expanded="false" aria-controls="collapse{{ course.pk }}">{{ course.position }}. {{ course.title }}</h5>
+                            <small>Gratuit</small>
+                        </div>
+                        <div class="list-group collapse" id="collapse{{ course.pk }}">
+                            {% for section in course.sections %}
+                                <a class="list-group-item list-group-item-action" href="#">Section {{ section.position }} - {{ section.title }}</a>
+                            {% endfor %}
+                        </div>
+                        <br>
+                    </div>
+                    <br>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

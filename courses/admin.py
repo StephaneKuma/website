@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from ckeditor.widgets import CKEditorWidget
 
-from .models import Course, Section, Lesson
+from .models import Technology, Course, Section, Lesson
 
 
 class LessonAdmin(admin.ModelAdmin):
@@ -35,11 +35,12 @@ class SectionInline(admin.TabularInline):
 class SectionAdmin(admin.ModelAdmin):
     fieldsets = [
         (_('COURSE'), {'fields': ['course']}),
-        (_('SECTION'), {'fields': ['position']})
+        (_('SECTION'), {'fields': ['position', 'title']})
     ]
     inlines = [LessonInline]
     list_filter = ['course']
     search_fields = ['course', 'position']
+    list_display = ['course', 'position', 'title']
 
 
 admin.site.register(Section, SectionAdmin)
@@ -55,13 +56,31 @@ class CourseAdminForm(forms.ModelForm):
 
 class CourseAdmin(admin.ModelAdmin):
     fieldsets = [
-        (_('COURSE'), {'fields': ['title', 'slug', 'image', 'description', 'is_free', 'price']})
+        (_('TECHNOLOGY'), {'fields': ['technology']}),
+        (_('COURSE'), {'fields': ['position', 'title', 'slug', 'image', 'description', 'is_free', 'price']})
     ]
     form = CourseAdminForm
     inlines = [SectionInline]
-    list_display = ['title', 'image', 'description', 'is_free', 'price']
+    list_display = ['technology', 'position', 'title', 'image', 'description', 'is_free', 'price']
     list_filter = ['title', 'is_free', 'price']
     search_fields = ['title', 'description']
 
 
 admin.site.register(Course, CourseAdmin)
+
+
+class CourseInline(admin.TabularInline):
+    form = CourseAdminForm
+    model = Course
+    extra = 1
+
+
+class TechnologyAdmin(admin.ModelAdmin):
+    inlines = [CourseInline]
+    fields = ['title', 'slug', 'image', 'description',]
+    search_fields = ['title', 'description']
+    list_filter = ['title']
+    list_display = ['title', 'slug', 'description']
+
+
+admin.site.register(Technology, TechnologyAdmin)

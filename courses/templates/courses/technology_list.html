@@ -1,0 +1,24 @@
+{% extends "courses/layouts/base.html" %}
+
+{% block title %}
+    Bienvenue sur Stekos DEV
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <h3 class="container-fluid">Feuille de route - Gagnez de l'expérience de manière structurée</h3>
+        {% for object in object_list %}
+            <div class="col-sm-4 col-md-4">
+                <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ object.image_url|default_if_none:'#' }}" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <p class="card-text">
+                            {{ object.description|safe|linebreaks|truncatechars:200 }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

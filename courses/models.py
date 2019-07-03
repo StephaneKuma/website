@@ -5,7 +5,38 @@ from django.utils.translation import ugettext_lazy as _
 from ckeditor.fields import RichTextField
 
 
+class Technology(models.Model):
+    """ Save technologies available on the site """
+
+    title = models.CharField(verbose_name=_('title of the tech'), max_length=120)
+    slug = models.SlugField(verbose_name=_('tech slug'))
+    image = models.ImageField(verbose_name=_('tech image'), default='default.png')
+    description = RichTextField(verbose_name=_('description'))
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('courses:tech-detail', kwargs={'slug': self.slug})
+
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+
+    @property
+    def courses(self):
+        return self.course_set.all().order_by('position')
+
+    class Meta:
+        verbose_name = _('Technology')
+        verbose_name_plural = _('Technologies')
+
+
 class Course(models.Model):
+    """ Save courses on technologies available on the site """
+
+    technology = models.ForeignKey(Technology, on_delete=models.CASCADE, verbose_name=_('belongs to'))
+    position = models.IntegerField(verbose_name=_('course number'))
     title = models.CharField(verbose_name=_('title of the course'), max_length=120)
     slug = models.SlugField(verbose_name=_('course slug'))
     image = models.ImageField(verbose_name=_('course image'), default='default.png')
@@ -34,8 +65,11 @@ class Course(models.Model):
 
 
 class Section(models.Model):
+    """ Save course section """
+
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, verbose_name=_('section belongs to'))
     position = models.IntegerField(verbose_name=_('section number'))
+    title = models.CharField(verbose_name=_('title of the section'), max_length=100, null=True)
 
     def __str__(self):
         return '%s - Section %s' % (self.course, self.position)
@@ -50,6 +84,8 @@ class Section(models.Model):
 
 
 class Lesson(models.Model):
+    """ Save lessons for available technologies courses on the site """
+
     slug = models.SlugField(verbose_name=_('lesson slug'))
     title = models.CharField(verbose_name=_('lesson title'), max_length=120)
     # course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)

@@ -2,7 +2,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, View
 
-from .models import Course, Lesson
+from .models import Course, Lesson, Technology
+
+
+class TechnologyListView(ListView):
+    model = Technology
+
+
+class TechnologyDetailView(DetailView):
+    model = Technology
 
 
 class CourseListView(ListView):
